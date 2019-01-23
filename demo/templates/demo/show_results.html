@@ -1,0 +1,16 @@
+{% extends "demo/base_site.html" %}
+{% load  i18n static%}
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static 'demo/css/show_results.css' %}" /> {% endblock %}
+
+{% block content %}
+
+<a role="button" class="btn btn-info" href="download_results">{% trans 'Download Results' %}</a> 
+
+ {% autoescape off %}
+ {{ results.results }}
+ {% endautoescape %}
+ {% endblock %}
+
+{% block extrajavascript %}
+	<script src="{% static 'demo/js/show_results.js' %}"></script>
+{% endblock %}

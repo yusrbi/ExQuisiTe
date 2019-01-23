@@ -1,0 +1,14 @@
+{% extends "demo/base_site.html" %}
+{% load i18n static %} 
+{% load crispy_forms_tags %}
+{% crispy input_form  input_form.helper %}
+{% block content %}
+ {% block breadcrumbs %} {% endblock %} 
+
+<span class="step-title">Specify Your Options</span>
+
+{% crispy form %}
+
+
+
+ {% endblock %}

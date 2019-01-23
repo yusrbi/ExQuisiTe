@@ -1,0 +1,9 @@
+{% extends "base_site.html" %}
+{% load i18n static %} 
+
+{% block content %}
+ {% block breadcrumbs %} {% endblock %} 
+
+This site collecte annotation for a table corpus extracted from Dresden Table Corpus, which in turn extracted from Common Crawl of July 2014. Please read the instructions <a href="{%url 'userstudy:annotation_manual' %}">available here </a>  and login when you are ready to start. Thank you for your support!
+<a href="{% url 'login' %}">{% trans 'Login' %}!</a>
+{% endblock %}

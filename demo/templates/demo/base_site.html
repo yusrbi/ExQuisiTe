@@ -1,0 +1,18 @@
+{% extends "demo/base.html" %}
+{% load i18n static %}
+
+{% block title %}{{ title|default:_('ExQuisiTe: Explaining Quantities in Text') }}{% endblock %}
+ {% block breadcrumbs %} {% endblock %} 
+ 
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'demo:select_input' %}">ExQuisiTe: Explaining Quantities in Text</a></h1>
+{% endblock %}
+
+{% block nav-global %}
+{% endblock %}
+{%block footer %}
+ <div id="footer"> <a href="https://imprint.mpi-klsb.mpg.de/inf/briq">Imprint</a> |
+<a href="https://data-protection.mpi-klsb.mpg.de/inf/briq">Data Protection</a> </div> 
+ {% endblock %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static 'demo/css/demo.css' %}"/> {% endblock %}

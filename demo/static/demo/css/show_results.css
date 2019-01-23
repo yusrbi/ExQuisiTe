@@ -1,0 +1,74 @@
+tr { cursor: default; }
+td.highlight { background-color: yellow !important; }
+th.highlight { background-color: yellow !important; }
+td:hover { 
+  background-color: gray !important; 
+}
+th:hover {
+  background-color: gray !important;
+}
+.mention {background-color:: yellow;}
+
+.popover{
+    max-width: 100%; /* Max Width of the popover (depending on the container!) */
+}
+.text-part{}
+.table-part{float:right; margin-top:50px;}
+.selection-part{flaot:left; margin-left:0 auto;margin-top:50px;}
+.related{margin-left: 50px;}
+.submit-cls{margin-top:20px}
+.links{margin-top:20px; font-weight: bold;}
+.end_session{font-color:red}
+.popover-body {display: none; float: bottom;}
+
+.btn-info, .btn-info:active, .btn-info:visited {
+  background-color: white !important; 
+  color: black !important; 
+  border: 2px solid #008CBA !important;
+}
+.btn-info:hover {
+   background-color: #008CBA !important;
+  color: white !important; 
+  font-weight: bold !important;
+}
+
+.btn-warning, .btn-warning:active, .btn-warning:visited {
+  background-color: white !important;
+  color: black !important; 
+  border: 2px solid #f44336 !important;
+}
+
+.btn-warning:hover{
+  background-color: #f44336 !important;
+  color: white !important; 
+  font-weight: bold !important;
+ 
+}
+
+.btn-success, .btn-success:active, .btn-success:visited {
+    background-color: white;
+    color: black !important;
+    border: 2px solid #006622 !important;
+}
+.btn-success:hover{
+    background-color: #006622 !important;
+    color: white !important;
+    font-weight: bold !important;
+}
+
+
+.btn-primary,  .btn-primary:visited, .btn-primary:active {
+    background-color: white !important;
+    color: black !important;
+    border: 2px solid #ff9900 !important;
+}
+
+.btn-primary:hover,.btn-primary:active:hover,
+.btn-primary.active:hover,
+.open > .dropdown-toggle.btn-primary:hover{
+    background-color: #ff9900 !important;
+    color: white !important;
+    font-weight: bold !important;
+}
+
+

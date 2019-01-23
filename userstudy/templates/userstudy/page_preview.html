@@ -1,0 +1,56 @@
+{% extends "base_site.html"%}
+{% load  i18n static%}
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static 'userstudy/css/page_preview.css' %}" /> {% endblock %}
+{% block content %}
+  {% if error_message %}
+  <p class="errornote">
+      {{ error_message }}
+  </p>
+  {% endif %}
+
+<h3> {{page.title}}</h3>
+
+<a href="{% url 'userstudy:page_view' page.pk%}" target="_blank"> View Source Page </a>
+<br/>
+
+<form name="assign_user_to_page" action="{% url 'userstudy:select_document' page.id %}" method=POST>
+{% csrf_token %}
+<div class="select-user">
+	<input type="submit" name="submit_page" value="Add to Batch"/>
+	<input type="submit" name="submit_page" value="Ignore"/>
+	<input type="submit" name="submit_page" value="Boring Numbers" />
+	<input type="hidden" name="document_id_list"/>
+</div>
+</form>
+<br/>
+{% for document in page.document_set.all%}
+		<h5> <span style="color:red">Text:</span></h5>
+		<input type="checkbox" name="document_select" value="{{ document.id}}"/>	<div id="doc-text" class="text-part">
+		{% autoescape off %}
+	
+			{{ document.highlighted_text }}
+		{% endautoescape %}
+		</div>
+		<a href="{% url 'admin:userstudy_document_change' document.pk%}" target="_blank"> Edit Document </a>
+	{% for mention in document.mention_set.all%}
+		{% if mention.mention_table_set.all %}
+			<div class="mention"> Mention: {{mention.mention}}, ID: {{mention.id}}</div>
+			<div class="tables-title"> Related Tables:</div>
+			{% for mention_table in mention.mention_table_set.all%}
+				<div class="table">
+					Table ID: {{mention_table.table_id}}<br/>
+					{% autoescape off %}
+						{{mention_table.table_view}}
+					{% endautoescape %}
+				</div>
+			{% endfor %}
+		{% endif %}
+	{% endfor %}
+{% endfor%}
+
+<a href="{% url 'userstudy:page_view' page.pk%}" target="_blank"> View Source Page </a>
+{%endblock%}
+
+{% block extrajavascript %}
+	 <script src="{% static 'userstudy/js/page_preview.js' %}"></script>
+{% endblock %}

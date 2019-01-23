@@ -1,0 +1,18 @@
+tr { cursor: default; }
+td.highlight { background: yellow !important; }
+th.highlight { background: yellow !important; }
+td:hover { 
+  background: gray !important; 
+}
+th:hover {
+  background: gray !important;
+}
+.mention {background: yellow;}
+
+.text-part{}
+.table-part{float:right; margin-top:50px;}
+.selection-part{flaot:left; margin-left:0 auto;margin-top:50px;}
+.related{margin-left: 50px;}
+.submit-cls{margin-top:20px}
+.links{margin-top:20px; font-weight: bold;}
+.end_session{font-color:red}

@@ -1,0 +1,11 @@
+tr { cursor: default; }
+td.highlight { background: yellow; }
+td:hover { 
+  background: gray; 
+}
+.select-user{width: 400px;padding: 5px;margin-top: 5px; height: 70px}
+select{width: 200px; height: 40px;}
+.mention {background: yellow;}
+.text-part{}
+.table{margin-top: 20px;}
+.tables-title{}

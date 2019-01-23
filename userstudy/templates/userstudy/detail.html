@@ -1,0 +1,112 @@
+{% extends "base_site.html"%}
+{% load  i18n static%}
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static 'userstudy/css/detail.css' %}" /> {% endblock %}
+
+{% block nav-global %}
+<div align="right" class="end_session">
+ Welcome {{ request.user.username }}! | Completed Records: {{ annotated_mentions }} |
+ <a href="{% url 'userstudy:end_session' mention_table.mention_id%}"> End Session </a></div>
+{% endblock %}
+
+
+{% block content %}
+  {% if error_message %}
+  <p class="errornote">
+      {{ error_message }}
+  </p>
+  {% endif %}
+
+<div id="doc-text" class="text-part">
+{% autoescape off %}
+{{ mention_table.highlighted_mention_in_text }}
+{% endautoescape %}
+</div>
+<div id="doc-table" class="table-part">
+{% autoescape off %}
+
+{{ mention_table.table_view}}
+{% endautoescape %}
+</div>
+<form id="main_form" action="{% url 'userstudy:submit_answer' mention_table.id %}" method="post">
+{% csrf_token %}
+
+<div id="selections" class="selection-part">
+ <!--  <div class="radio">
+	<label> <input type="radio" name="relation" value="Not Mention"> Not A Mention </label>
+   </div>
+   <div class="radio">
+        <label>  <input type="radio" name="relation" value="Not Related">  Not Related </label>
+   </div>
+
+   <div class="radio">
+       Related with  [<label class="radio-inline">  <input type="radio" name="exact" value="False" > approximate  </lable>
+       |<label class="radio-inline">  <input type="radio" name ="exact" value="True" checked> exact </lable>] value, and the type of relation is:
+   </div> -->
+<h4> Select the Type of Relation: </h4>
+   <div class ="related">
+	<div class="radio">
+                <label> <input type="radio" name="relation" value="same" checked> Single Value  </label>
+        </div>
+
+  	<div class="radio">
+        	<label> <input type="radio" name="relation" value="sum"> Sum  </label>
+	</div>
+        <div class="radio">
+                <label> <input type="radio" name="relation" value="dif"> Difference  </label>
+        </div>
+
+        <div class="radio">
+                <label> <input type="radio" name="relation" value="rat"> Decrease/Increase ratio  </label>
+        </div>
+        <div class="radio">
+                <label> <input type="radio" name="relation" value="avg"> Average  </label>
+        </div>
+
+        <div class="radio">
+                <label> <input type="radio" name="relation" value="max"> Max  </label>
+        </div>
+
+        <div class="radio">
+                <label> <input type="radio" name="relation" value="min"> Min  </label>
+        </div>
+	<div class="radio">
+		<label> <input type="radio" name="relation" value="percentage"> Percentage </label>
+	</div>
+	
+	<div class="radio">
+		<label> <input type= "radio" name="relation" value="range"> Range </label>
+	</div>
+
+	<div>
+		<label> <input type="radio" name="relation" value="header"> Header </label>
+	</div>
+
+        <div class="radio">
+                <label> <input type="radio" name="relation" value="other"> other <input type="text" name="other_aggregate" />  </label>
+        </div>
+</div>
+	<div>
+		<label> Comment: </label> <textarea name="comment" rows="2" cols="20"></textarea>
+	</div>
+
+</div>
+<div class="submit-cls" id="submit">
+<input type="submit" name="submit_btn"  value ="{% trans 'Not a Mention' %}"/>
+<input type="submit" name="submit_btn"  value ="{% trans 'Not Related' %}"/>
+<input type="submit" name="submit_btn"  value ="{% trans 'Exact' %}"/>
+<input type="submit" name="submit_btn"  value ="{% trans 'Approximate' %}"/>
+<input type="hidden" name="related_cells" />
+<input type="hidden" name="load_next" value="{{load_next}}"/>
+</div>
+</form>
+<div class='links'>
+ <a href="{% url 'userstudy:skip_mention' mention_table.mention_id %}" > Skip This Mention </a> --
+<a href="{% url 'userstudy:skip_document' mention_table.document_id %}" > Skip This Document </a> --
+<a href="{% url 'userstudy:page_view' mention_table.document_page_id %}" > View Source Page </a>
+</div>
+
+{%endblock%}
+
+{% block extrajavascript %}
+<script src="{% static 'userstudy/js/detail.js' %}"></script>
+{% endblock %}

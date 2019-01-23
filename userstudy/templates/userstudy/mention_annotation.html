@@ -1,0 +1,59 @@
+{% extends "base_site.html"%}
+{% load  i18n static%}
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static 'userstudy/css/detail.css' %}" /> {% endblock %}
+{% block content %}
+  {% if error_message %}
+  <p class="errornote">
+      {{ error_message }}
+  </p>
+  {% endif %}
+
+<h3> Mention:{{mention_table.mention__mention}}</h3>
+<div class="text">
+{% autoescape off %}
+<div class="text"> {{mention_table.highlighted_mention_in_text}}</div>
+{% endautoescape %}
+ <div name="target-table" class="table">
+{% autoescape off %}
+{{ mention_table.table_view }}
+{% endautoescape %}
+</div>
+
+</div>
+<table>
+<tr>
+<th>Annotator Name </th>
+<th>Relation </th>
+<th> Related Cells </th>
+<th>Comment</th>
+<th>Type</th>
+</tr>
+{% for annotation in annotations%}
+<tr>	
+	<td> {{annotation.annotator_name}}</td>
+	<td> {{ annotation.relation}}</td>
+	<td> {{annotation.related_table_cells}} 
+		<a href="#" onclick="highlight_cells('{{annotation.related_table_cells}}' )"> highlight </a> 
+	</td>
+	<td> {{annotation.comment}}</td>
+	<td> {{annotation.relation_type}}</td>
+	<td> 
+		{% if annotation.ignore %}
+			<a href="{% url 'userstudy:consider_annotation' annotation.id %}"> Consider </a>
+		{% else %}
+			<a href="{% url 'userstudy:ignore_annotation' annotation.id%}"> Ignore </a>	
+		{%endif%}
+	</td>
+</tr>
+{% endfor%}
+</table>
+<a href="{% url 'userstudy:detail' mention_table.id  %}"> Edit Annotation </a>
+<br/>
+<br/>
+<a href="{% url 'userstudy:mention_table_done' mention_table.id  %}"> Done! </a>
+{%endblock%}
+
+{% block extrajavascript %}
+
+	 <script src="{% static 'userstudy/js/mention_annotation.js' %}"></script>
+{% endblock %}

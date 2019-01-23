@@ -1,0 +1,60 @@
+{% extends "base_site.html"%}
+{% load  i18n static%}
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static 'userstudy/css/page_preview.css' %}" /> {% endblock %}
+{% block content %}
+  {% if error_message %}
+  <p class="errornote">
+      {{ error_message }}
+  </p>
+  {% endif %}
+
+<h3> {{page.title}}</h3>
+
+<a href="{% url 'userstudy:page_view' page.pk%}" target="_blank"> View Source Page </a>
+<br/>
+
+<form name="assign_user_to_page" action="{% url 'userstudy:assign_user' page.id %}" method=POST>
+{% csrf_token %}
+<div class="select-user">
+	<select id="assigned_user" name="user_id" class="user-select" onChange='form.submit'>
+		{% for user_ in users %}
+			{% if  page.assigned_user == user_%}
+				 <option value={{user_.id}} selected> {{user_.username}}</option>
+			{% else %}
+				 <option value={{user_.id}}> {{user_.username}}</option>
+			{% endif%}
+		{% endfor %}
+	
+	</select>
+	<input type="submit" value="Assign"/>
+</div>
+</form>
+<br/>
+{% for document in page.document_set.all%}
+		<h5> Text:</h5><div id="doc-text" class="text-part">
+		{% autoescape off %}
+	
+			{{ document.highlighted_text }}
+		{% endautoescape %}
+		</div>
+		<a href="{% url 'admin:userstudy_document_change' document.pk%}" target="_blank"> Edit Document </a>
+	{% for mention in document.mention_set.all%}
+		{% if mention.mention_table_set.all %}
+			<div class="mention"> Mention: {{mention.mention}}</div>
+			<div class="tables-title"> Related Tables:</div>
+			{% for mention_table in mention.mention_table_set.all%}
+				<div class="table">
+					{% autoescape off %}
+						{{mention_table.table_view}}
+					{% endautoescape %}
+				</div>
+			{% endfor %}
+		{% endif %}
+	{% endfor %}
+{% endfor%}
+
+<a href="{% url 'userstudy:page_view' page.pk%}" target="_blank"> View Source Page </a>
+{%endblock%}
+
+{% block extrajavascript %}
+{% endblock %}

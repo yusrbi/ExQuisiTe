@@ -1,0 +1,46 @@
+{% extends "base_site.html"%}
+{% load  i18n static%}
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static 'userstudy/css/detail.css' %}" /> {% endblock %}
+
+{% block nav-global %}
+{% endblock %}
+
+
+{% block content %}
+  {% if error_message %}
+  <p class="errornote">
+      {{ error_message }}
+  </p>
+  {% endif %}
+
+
+<ul>
+{% for mention_table  in mention_tables  %}
+<li>
+    {{ mention_table| get_item:"mention" }} | <a href="{% url 'userstudy:mention_annotation' mention_table|get_item:"mention_table_id" %}"> Show Annotations </a>
+</li>
+{% endfor %}
+</ul>
+<div class="pagination">
+    <span class="step-links">
+        {% if mention_tables.has_previous %}
+            <a href="?page=1">first</a>
+            <a href="?page={{ mention_tables.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ mention_tables.number }} of {{ mention_tables.paginator.num_pages }}.
+        </span>
+
+        {% if mention_tables.has_next %}
+            <a href="?page={{ mention_tables.next_page_number }}">next</a>
+            <a href="?page={{ mention_tables.paginator.num_pages }}">last</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}
+{% block extrajavascript %}
+<!-- <script src="{% static 'userstudy/js/detail.js' %}"></script>-->
+
+{% endblock %}
+

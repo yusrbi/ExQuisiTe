@@ -1,0 +1,216 @@
+{% extends "base_site.html" %}
+{% load i18n static %} 
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static 'userstudy/css/manual.css' %}" />     {% endblock %}
+{% block content %}
+ {% block breadcrumbs %} {% endblock %} 
+
+<h1> Table Annotation Instruction manual</h1>
+
+<div class="desc">Here we provide a step by step guide on how to annotate quantity mentions!</div>
+
+<h3>Step one</h3> 
+<div class="desc"> Open the URL: http://credi.mpi-inf.mpg.de:8000/userstudy/next/, and login to the application using the credentials provided by your supervisor.</div>
+<img src='{% static "userstudy/img/login.png" %}' class='screenshot' alt='Login image'/>
+
+<div class="imp">If you've completed all the documents assigned to you, you will see the following page:</div>
+
+<img src='{% static "userstudy/img/allDone.png" %}' class='screenshot' alt='Task Done!'/>
+
+<div class="desc"> Then you should contact your supervisor to assign more documents to you.</div>
+
+<h3>Step two</h3>
+<div class='desc' > After logging into the tool, you will see the annotation page as follows:</div>
+<img src='{% static "userstudy/img/doc_view_new.png" %}' class='screenshot' alt='Document View!'/>
+
+
+
+<div class="desc">
+As you see it displays a document with textual content and a single related table. The text has a highlighted quantity mention that we need to know its relation to the given table. The text will be displayed in the top of the page and the table will be displayed in the right under the text. While the annotation options are displayed in the left side of the page.</div>
+<img src='{% static "userstudy/img/doc-view-ann_new.png" %}' class='screenshot' alt='Document View!'/>
+
+<h3>Step Three</h3> 
+<div class="desc"> You should select the correct annotation for the highlighted quantity mention from the given options. Then submit your answer using the 'Submit button'. </div>
+<div class="imp">
+Make sure you select the correct annotation option as by clicking on submit you won't be able to change your answer. </div>
+
+<div class="desc"> After submitting your answer a new document that need to be annotated  will be displayed.</div>
+
+<hr>
+<h2> Explaining The Annotation Options </h2>
+<div class="imp"> Please make sure you fully understand the meaning of each option, when in doubt please contact  <a href="mailto:yibrahim@mpi-inf.mpg.de?Subject=Table%20Annotation%20Enquiry" target="_top"> Yusra Ibrahim </a>.</div>
+
+<h4> Not  a Mention</h4>
+<div class="desc" >If the mention is not a 'true' quantity, for example the '2' in CO2  is not a quantity mention neither is  the 6 in  Apple iPhone 6. We define a quantity mention as any number that quantifies a certain aspect of the world. A quantity mention may have an associated units such as money '$25', percentage '10%' and speed '10 km/hr'; or may represent a simple count such as '400 people'. We don't consider the following as quantity mentions:</div>
+<ol>
+	<li> Date and Time</li>
+<li> Headings, for example: Section 2, Table 1.3, Fig. 6, etc. </li>
+	<li> Phone Numbers </li>
+	<li> Reference Numbers, for example: in [2], §25A(a) </li>
+</ol>
+<div class="desc" > Thus if you encounter any of these you should mark as Not a Mention.</div>
+
+<h4>Not Related</h4>
+<div class="desc"> If the quantity in text represents a correct quantity mention, however it is not related to the given table, then you should select Not related. </div>
+<h4> Related </h4>
+<div class="desc"> If the highlighted quantity mention is related to the given  table, please select the type of relation from the given options and mark all the table cells that are associated with this quantity. The following is the type of interesting relations:</div>
+<!-- Single Value -->
+<div class="relation">Single Value</div>
+<div class="desc"> When the quantity mention in the text refer to a single cell in the table. As in the following example:  </div>
+<div class="example-text">In the 2006 Census, <span class="mention">220</span> people were usually resident in Woolbrook (State Suburbs)</div>
+<div class="example-table"> 
+<!-- Example(document 4)-->
+<table><tbody><tr class="oddRow"><th class="firstCol"><a href="/ausstats/abs@.nsf/vwDictionary/BB1C04B94649E364CA25720A007E4BD5?opendocument" class="dictionaryLink" title="Population is the count of people where they usually live." target="_blank">People</a></th><th class="geoCol">Woolbrook</th><th class="percentCol">%</th><th class="geoCol">Australia</th><th class="percentCol">%</th></tr><tr class="evenRow"><td class="firstCol">Total</td><td class="mention">220</td><td><strong>--</strong></td><td>19,855,288</td><td><strong>--</strong></td></tr><tr class="oddRow"><td class="firstCol">Male</td><td>110</td><td>50.0</td><td>9,799,252</td><td>49.4</td></tr><tr class="evenRow"><td class="firstCol">Female</td><td>110</td><td>50.0</td><td>10,056,036</td><td>50.6</td></tr><tr class="oddRow"><td class="firstCol" colspan="7">&nbsp;</td></tr><tr class="evenRow"><td class="firstCol">Aboriginal and Torres Strait Islander people</td><td>16</td><td>7.3</td><td>455,031</td><td>2.3</td></tr></tbody></table>
+</div>
+<div class="imp"> Please be aware of the following: If the table explicitly presents total/sum, difference, ratio of decrease/increase, average, maximum or minimum; you should select the "Single Value" option and the corresponding cell. </div>
+
+<!-- Sum -->
+<div class="relation"> Sum </div>
+<div class="desc"> When the highlighted quantity mention in text represent the sum of two or more cells in the given table. The following example shows the quantity <span class="mention"> 28.6%</span> representing the sum of the two highlighted cells in the table.</div>
+
+	<div class="example-text">
+In the 2006 Census, <span class="mention">28.6% </span> of people usually resident in Woolbrook (State Suburbs) were children aged 0-14 years
+</div>
+<div class="example-table">
+<!-- Example(document4)-->
+<table><tbody><tr class="oddRow"><th class="firstCol"><a href="/ausstats/abs@.nsf/vwDictionary/Age%20(AGEP)%20-%20Characteristics%202006?opendocument" class="dictionaryLink" title="Age has been collected in all Australian Censuses for each person. Age is calculated from date of birth when provided, otherwise stated age is used.  If neither is provided then age is imputed." target="_blank">Age</a></th><th class="geoCol">Woolbrook</th><th class="percentCol">%</th><th class="geoCol">Australia</th><th class="percentCol">%</th></tr><tr class="evenRow"><td class="firstCol" colspan="7"><em>People</em></td></tr><tr class="oddRow"><td class="firstCol">0-4 years</td><td>15</td><td class="mention">6.8</td><td>1,260,405</td><td>6.3</td></tr><tr class="evenRow"><td class="firstCol">5-14 years</td><td>48</td><td class="mention">21.8</td><td>2,676,807</td><td>13.5</td></tr><tr class="oddRow"><td class="firstCol">15-24 years</td><td>13</td><td>5.9</td><td>2,704,276</td><td>13.6</td></tr><tr class="evenRow"><td class="firstCol">25-54 years</td><td>88</td><td>40.0</td><td>8,376,751</td><td>42.2</td></tr><tr class="oddRow"><td class="firstCol">55-64 years</td><td>27</td><td>12.3</td><td>2,192,675</td><td>11.0</td></tr><tr class="evenRow"><td class="firstCol">65 years and over</td><td>31</td><td>14.1</td><td>2,644,374</td><td>13.3</td></tr><tr class="oddRow"><td class="firstCol" colspan="7">&nbsp;</td></tr><tr class="evenRow"><td class="firstCol">Median age</td><td>39</td><td><strong>--</strong></td><td>37</td><td><strong>--</strong></td></tr></tbody></table>
+</div>
+<!-- Difference -->
+<div class="relation">Difference</div>
+<div class="desc"> When the highlighted quantity mention in text represent the difference between two cells in the table. For example <span class="mention"> 0.9 </span> in the following example represents the difference between 16.9% and 16.0%</div>
+<div class="example-text">
+The dropout rate of students with disabilities for the 2004 total cohort four years later, as of August, improved by <span class="mention"> 0.9 </span> percentage points compared to the 2003 total cohort rate, from 16.9 percent to 16.0 percent.</div>
+<div class="example-table">
+<!-- Document 32466-->
+<table class="THlTDl" border="1" cellspacing="0" cellpadding="0" width="100%"> <tbody><tr> <td rowspan="2"><p>Group of School Districts</p></td> <td colspan="2"><p>2003 Total Cohort of SWD, as of August, Four Years Later</p></td> <td colspan="2"><p>2004 Total Cohort of SWD, As of August, Four Years Later</p></td> </tr> <tr> <td><p># in Cohort</p></td> <td><p>Drop-Out<br> Rate</p></td> <td><p># in Cohort</p></td> <td><p>Drop-Out Rate</p></td> </tr> <tr> <td><p>Big    Five Cities </p></td> <td><p>9,943</p></td> <td><p>24.6%</p></td> <td><p>11,729</p></td> <td><p>22.9%</p></td> </tr> <tr> <td><p>Rest of State</p></td> <td><p>18,585</p></td> <td><p>12.8%</p></td> <td><p>19,523</p></td> <td><p>11.8%</p></td> </tr> <tr> <td><p>Total State</p></td> <td><p>28,528</p></td> <td class="mention"><p>16.9%</p></td> <td><p>31,252</p></td> <td class="mention"><p>16.0%</p></td> </tr></tbody></table>
+</div>
+<!-- Decrease/Increase Ratio -->
+	<div class="relation">Decrease / Increase ratio</div>
+	<div class="desc"> When the highlighted quantity represent an increase or decrease ratio between two cells in the table. In the following example <span class="mention">1.97 percent </span> represent the ratio of increase of the budget in 2012 over that of 2010. Hence, we define an increase/decrease ratio as difference between 2 cells divided by their sum.</div>
+	<div class="example-text">
+Budget Policy: The FY 2012 budget estimate for ELSI is $19.1 million, an increase of $370 thousand or <span class="mention"> 1.97 percent </span> over the FY 2010 Actual level.</div>
+<div class="example-table"> 
+ <!-- Document: 32810 -->
+<table border="0" cellspacing="1" cellpadding="5"> <thead> <tr valign="top" class="tableheader"> <th id="a1"> </th> <th colspan="2" id="a3">FY 2010<br> Actual </th> <th colspan="2" id="a3">FY 2011<br> CR</th> <th colspan="2" id="a3">FY 2012<br> PB</th> <th colspan="2" id="a3">Change vs.<br> FY 2010</th> </tr> </thead> <tbody> <tr class="tableheaders"> <td headers="a1"> </td> <td >FTEs</td> <td >Amount</td> <td >FTEs </td> <td >Amount</td> <td >FTEs</td> <td >Amount</td> <td >FTEs</td> <td >Amount</td> </tr> <tr class="tablecontent"> <td headers="a1">Extramural Research (Detail): </td> <td > </td> <td > </td> <td > </td> <td > </td> <td > </td> <td > </td> <td > </td> <td > </td> </tr> <tr class="tablecontent"> <td headers="a1">Basic Genomics </td> <td > </td> <td > </td> <td > </td> <td > </td> <td > </td> <td > </td> <td > </td> <td > </td> </tr> <tr class="tablecontent"> <td headers="a1"> Large-scale Sequencing </td> <td ></td> <td > </td> <td > </td> <td > </td> <td > </td> <td > </td> <td > </td> <td > </td> </tr> <tr class="tablecontent"> <td headers="a1"> Comparative Genomic Sequencing</td> <td > </td> <td >$15,066</td> <td ><br></td> <td >$15,066</td> <td ><br></td> <td >$11,934</td> <td ><br></td> <td >-$3,132</td> </tr> <tr class="tablecontent"> <td headers="a1"> Medical Sequencing </td> <td ><br></td> <td >66,246</td> <td ><br></td> <td >66,246</td> <td ><br></td> <td >70,980</td> <td ><br></td> <td >4,734</td> </tr> <tr class="tablecontent"> <td headers="a1"> The Cancer Genome Atlas </td> <td ><br></td> <td >34,111</td> <td ><br></td> <td >34,111</td> <td ><br></td> <td >34,783</td> <td ><br></td> <td >672</td> </tr> <tr class="tablecontent"> <td headers="a1"> Genomic Function </td> <td ><br></td> <td >55,554</td> <td ><br></td> <td >55,554</td> <td ><br></td> <td >56,648</td> <td ><br></td> <td >1,094</td> </tr> <tr class="tablecontent"> <td headers="a1"> Genomic Variation </td> <td ><br></td> <td >20,328</td> <td ><br></td> <td >20,328</td> <td ><br></td> <td >20,728</td> <td ><br></td> <td >400</td> </tr> <tr class="tablecontent"> <td headers="a1"> Computational Genomics </td> <td ><br></td> <td >49,260</td> <td ><br></td> <td >49,260</td> <td ><br></td> <td >50,230</td> <td ><br></td> <td >970</td> </tr> <tr class="tablecontent"> <td headers="a1"> Technology Development </td> <td ><br></td> <td >43,699</td> <td ><br></td> <td >43,699</td> <td ><br></td> <td >44,560</td> <td ><br></td> <td >861</td> </tr> <tr class="tablecontent"> <td headers="a1">Other Basic Genomics</td> <td ><br></td> <td >62,111</td> <td ><br></td> <td >61,403</td> <td ><br></td> <td >62,931</td> <td ><br></td> <td >820</td> </tr> <tr class="tablecontent"> <td headers="a1">Translational Genomics </td> <td ><br></td> <td >21,581</td> <td ><br></td> <td >21,581</td> <td ><br></td> <td >22,006</td> <td ><br></td> <td >425</td> </tr> <tr class="tablecontent"> <td headers="a1">ELSI</td> <td ><br></td> <td >18,765</td> <td ><br></td> <td class="mention" >18,765</td> <td ><br></td> <td class="mention" >19,135</td> <td ><br></td> <td >370</td> </tr> </tbody></table>
+</div>
+<!-- Average -->
+<div class="relation"> Average</div> 
+	<div class="desc"> When the highlighted quantity mention represent the average of two or more cells in the table.</div>
+	<div class="example-text">
+
+</div>
+<div class="example-table"> 
+</div>
+<!-- Max and Min -->
+	<div class="relation"> Maximum/ Minimum  </div>
+<div class="desc"> When the highlighted quantity mention represent the maximum/minimum value of two or more cells in the table. In the following example mention <span class="mention"> 31.4 percent </span> and mention <span class="mention">3.8 percent</span> represent the maximum and the minimum values (respectively) of the highlighted cells in the table. </div>
+
+<div class="example-text">
+The range of dropout rates for the 2004 total cohort by Need/Resource Capacity category of school districts was between <span class="mention"> 31.4 percent </span> in the large four cities to <span class="mention">  3.8 percent</span> in the low need school districts.</div>
+<div class="example-table"> 
+<!-- Document 32466 -->
+<table class="THlTDl" border="1" cellspacing="0" cellpadding="0" width="100%"> <tbody><tr> <td rowspan="2"><p>Need/ Resource Capacity Category</p></td> <td colspan="2"><p>2003 Total Cohort of SWD, As of August, Four Years Later</p></td> <td colspan="2"><p>2004 Total Cohort of SWD, As of August, Four Years Later</p></td> </tr> <tr> <td><p># in Cohort</p></td> <td><p>Drop-Out Rate</p></td> <td><p># in Cohort</p></td> <td><p>Drop-Out Rate</p></td> </tr> <tr> <td><p>New York City</p></td> <td><p>8,407</p></td> <td><p>22.0%</p></td> <td><p>10,117</p></td> <td class="mention"><p>21.6%</p></td> </tr> <tr> <td><p>Large Four Cities</p></td> <td><p>1,536</p></td> <td><p>38.9%</p></td> <td><p>1,612</p></td> <td class="mention"><p>31.4%</p></td> </tr> <tr> <td><p>Urban/Suburban High Need Districts</p></td> <td><p>2,778</p></td> <td><p>20.0%</p></td> <td><p>2,633</p></td> <td class="mention"><p>16.5%</p></td> </tr> <tr> <td><p>Rural High Need Districts</p></td> <td><p>2,323</p></td> <td><p>19.9%</p></td> <td><p>2,382</p></td> <td class="mention"><p>19.4%</p></td> </tr> <tr> <td><p>Average Need Districts</p></td> <td><p>9,563</p></td> <td><p>12.5%</p></td> <td><p>10,216</p></td> <td class="mention"><p>12.0%</p></td> </tr> <tr> <td><p>Low Need Districts</p></td> <td><p>3,873</p></td> <td><p>4.0%</p></td> <td><p>4,165</p></td> <td class="mention"><p>3.8%</p></td> </tr> <tr> <td><p>Charter Schools</p></td> <td><p>48</p></td> <td><p>31.3%</p></td> <td><p>127</p></td> <td class="mention"><p>23.6%</p></td> </tr> <tr> <td><p>Total State</p></td> <td><p>28,528</p></td> <td><p>16.9%</p></td> <td><p>31,252</p></td> <td class="mention"><p>16.0%</p></td> </tr> </tbody></table>
+</div>
+
+<!-- Percentage -->
+<div class="relation">Percentage</div>
+<div class="desc"> When the quantity mention in the text is the percentage calculated from two values in the table. In the next example .974 is the percentage of male faculty in the Math department: 37/38 </div>
+<div class="imp"> Please make sure you understand the difference between this relation and the Increase/Decrease Ratio. The Increase/Decrease Ratio gives the percentage of change between two values.</div>
+
+<div class="example-text">
+ With respect to the total set of 75 faculty in Math and English, the proportion of males is about .760; but with respect just to the 38 faculty in Math, the proportion of males is <span class="mention">.974</span>.
+</div>
+<div class="example-table"> 
+ <table cellpadding="4" cellspacing="2" border="1" align="center">     <caption align="bottom"><i><b><big><big>Table 1</big></big></b></i></caption>   <tbody>   <tr>   <td valign="top"><big><big><br />   </big></big></td>   <td valign="top" align="center" ><big><big><b>Math<br />   </b></big></big></td>   <td valign="top" align="center" ><big><big><b>English<br />   </b></big></big></td>   <td valign="top" align="center" ><big><big><b>Total<br />   </b></big></big></td>   </tr>   <tr>   <td valign="top" ><big><big><b>Female<br />   </b></big></big></td>   <td valign="top" align="right"><big><big>1 <br />   </big></big></td>   <td valign="top" align="right"><big><big>17 <br />   </big></big></td>   <td valign="top" align="right"><big><big>18 <br />   </big></big></td>   </tr>   <tr>   <td valign="top" ><big><big><b>Male<br />   </b></big></big></td>   <td valign="top" align="right" class="mention"><big><big>37 <br />   </big></big></td>   <td valign="top" align="right"><big><big>20 <br />   </big></big></td>   <td valign="top" align="right" ><big><big>57 <br />   </big></big></td>   </tr>   <tr>   <td valign="top" ><big><big><b>Total<br />   </b></big></big></td>   <td valign="top" align="right" class="mention" ><big><big>38 <br />   </big></big></td>   <td valign="top" align="right"><big><big>37 <br />   </big></big></td>   <td valign="top" align="right" ><big><big>75 <br />   </big></big></td>   </tr>   </tbody>   </table>
+
+</div>
+
+<!-- Range -->
+<div class="relation">Range</div>
+<div class="desc"> When the quantity mention in text marks the range of values over a subset of columns or rows. In the following example 1-4 refers to the range of values marked in the table. </div>
+
+<div class="example-text">
+Not all products need to be Energy Star labeled to get the credit, you just need to reach your chosen threshold of Energy Star labeled equipment for your project: 70%, 77%, 84%, or 90% for <span class="mention">1-4</span> points.
+
+</div>
+<div class="example-table"> 
+<table id="table-1" class="Basic-Table"> <tbody> <tr> <td class="Top-bar-on-table-grey-bold-CENTERED">        Percent Installed ENERGY STAR Qualified Equipment of ENERGY STAR Eligible Equipment       </td> <td class="Top-bar-on-table-grey-bold-CENTERED">        Points       </td> </tr> <tr> <td class="Cell-Style-1-cenetred">        70%       </td> <td class="mention">        1       </td> </tr> <tr> <td class="Cell-Style-1-cenetred">        77%       </td> <td class="mention">        2       </td> </tr> <tr> <td class="Cell-Style-1-cenetred">        84%       </td> <td class="mention">        3       </td> </tr> <tr> <td class="Cell-Style-1-cenetred">        90%       </td> <td class="mention">        4       </td> </tr> </tbody> </table>
+</div>
+
+
+<!-- Other -->
+<div class="relation">Other</div>
+<div class="desc"> When the highlighted quantity in text is related to one or more cells in the table, but the relation is not provided in the previous set of options. Then select "Other" relation and specify the name of the relation</div>
+<div class="imp"> Please before selecting the Other relation discuss it with your supervisor</div>
+
+<h4> Approximate/Exact Mention</h4>
+<div class="desc"> A Quantity can be an exact value of a quantity in the given table , such as the previous given examples; or it can be an approximate value of a quantity in the given table, as in the following example:  <span class="mention"> $7.3 million</span> is an approximation of the highlighted quantity in the table.  </div>
+<div class="example-text"> 
+Adjusted EBITDA for the nine months ended September 30, 2011 was $7.3 million compared to an Adjusted EBITDA loss of $1.7 million in the prior-year period.
+</div>
+<div class="example-table">
+<!-- for example (document 29785): -->
+<table cellpadding="0" cellspacing="6"  > <tbody><tr> <td  > </td> <td " colspan="2"> <strong>Three Months Ended <chron>Sept. 30</chron>,</strong></td> <td  > </td> <td " colspan="2"> <strong>Nine Months Ended <chron>Sept. 30</chron>,</strong></td> </tr> <tr> <td  > </td> <td  > <strong>2011</strong></td> <td  > <strong>2010</strong></td> <td > <strong>Three <br> Months<br> ended <br> June<br> 30, 2011</strong></td> <td  > <strong>2011</strong></td> <td  > <strong>2010</strong></td> </tr> <tr> <td  > Net loss</td> <td  > <money>$(3,756,534)</money></td> <td  > <money>$(4,135,080)</money></td> <td  > <money>$(7,127,159)</money></td> <td  > <money>$(14,098,271)</money></td> <td  > <money>$(7,500,159)</money></td> </tr> <tr> <td class="gnw_label_i10"> Income tax expense (benefit)</td> <td  > 46,384</td> <td  > —</td> <td  > (3,513,071)</td> <td  > (8,176,480)</td> <td  > —</td> </tr> <tr> <td class="gnw_label_i10"> Depreciation and amortization expense</td> <td  > 6,879,607</td> <td  > 1,272,266</td> <td  > 6,084,424</td> <td  > 15,671,983</td> <td  > 3,399,004</td> </tr> <tr> <td class="gnw_label_i10"> Interest expense, net</td> <td  > 807,605</td> <td  > 357,897</td> <td  > 265,774</td> <td  > 1,420,801</td> <td  > 1,003,636</td> </tr> <tr> <td class="gnw_label_i10"> Foreign currency (gain)/loss</td> <td  > 106,079</td> <td  > —</td> <td  > (128,064)</td> <td  > (57,388)</td> <td  > —</td> </tr> <tr> <td class="gnw_label_i10"> Net gain/loss on debt-related fair value instruments</td> <td  > (590,100)</td> <td  > —</td> <td  > 3,554,900</td> <td  > 4,925,900</td> <td  > —</td> </tr> <tr> <td class="gnw_label_i10"> Stock-based compensation</td> <td  > 1,118,788</td> <td  > —</td> <td  > 1,097,597</td> <td class="gnw_num "> 2,881,227</td> <td  > —</td> </tr> <tr> <td class="gnw_label_i10"> Acquisition and merger expenses</td> <td class="gnw_num_uline"> 644,092</td> <td class="gnw_num_uline"> 1,425,855</td> <td class="gnw_num_uline"> 2,775,258</td> <td class="gnw_num_uline"> 4,735,328</td> <td class="gnw_num_uline"> 1,425,855</td> </tr> <tr> <td  > </td> <td  > </td> <td  > </td> <td class="gnw_label "> </td> <td  > </td> <td  > </td> </tr> <tr> <td  > Adjusted EBITDA</td> <td  > <money>$5,255,921</money></td> <td  > <money>$(1,079,062)</money></td> <td  > <money>$3,009,859</money></td> <td class="mention" > <money>$7,303,100</money></td> <td  > <money>$(1,671,664)</money></td> </tr> <tr> <td   colspan="6"> <br> <br> </td> </tr> </tbody></table>
+
+</div>
+
+
+<h4> General Notes </h4>
+<div class="desc">
+<ul>
+<li> Read the text carefully and understand its relation to the table before annotating the quantity mention.</li>
+<li> Make sure not to confuse difference with decrease/increase ratio.</li>
+<li> Make sure to select the correct relation and all its related cells in the table. </li>
+<li> If the highlighted quantity mention in text is an approximation of a quantity in table, select "Approximate" along with the correct relation, i.e. Single Value, Sum, Difference, etc. While if the highlighted quantity mention is an exact value  of a quantity in table, select "Exact" along with the correct relation.</li>
+<li> Check the correctness of your answer before submitting.</li>
+<li> Pay attention to the  units, the decimal points and number scale. For example, Monetary values that are given in thousands USD$ in table and in million USD$ in text. Also, two quantities with the same value and different units are not related. For example, 2.4% is not related to 2.4$. 
+</li>
+<!--<li> You can skip a mention or a whole document if needed. <li>-->
+</ul>
+</div>
+<h4> FAQ</h4>
+<div class="desc">
+<p class="question"> Can I use the browser back button to edit a submitted answer?<p>
+<p class="answer"> No, please submit your answer once and don't use the browser back button. </p>
+
+<p class="question"> Can a quantity-table pair be related their context does not match? For example, when the table present data from different year than that given in the text? <p>
+<p class="answer"> No, the context must match!</p>
+
+<p class="question"> What if the context matches but the numbers do not match?<p>
+<p class="answer"> Then it is unrelated. We only consider a quantity-table pair related if the context and the numbers match. </p>
+
+
+<p class="question"> What is the target of this study? <p>
+<p class="answer"> This study is mainly about quantities, thus the selected cells+relation must match the highlighted number in text.  </p>
+
+<p class="question"> How do you define an approximate match? <p>
+<p class="answer"> You should use your common sense.  Approximations should be reasonable in terms of rounding up or down; for example 70,000 is an approximation of 70,100 or 69,890, but it is not approximation of 69,000 nor 68,900. However, sometimes you will find a quantity mention of the form "almost 25,000" matching quantity "24,449" in table. Thus, it depends on the context and the words used! </p>
+
+<p class="question"> If the relation between the quantity mention in the text and the table is not obvious, Should I find a complex mathematical relation between them?<p>
+<p class="answer"> No, don't try to come up with clever formula if the numbers do not match from the first glance.</p>
+
+<p class="question"> If I have two possible relations between the quantity mention in text and the table, which one should I chose? <p>
+<p class="answer"> You should chose the simplest most obvious relation, that is the explicitly mentioned  quantity. Then, in the comment you can write the other (implicit)  relation as follows:
+<ul>
+<li>When the quantity mention is an aggregation over the cells in the column, then write in the comment: "col-AggregateFunctionName".  </li>
+<li>When the quantity mention is an aggregation over the cells in the row, then write in the comment: "row-AggregateFunctionName"</li>
+<li>In case the aggregation is only performed on a subset of the cells in this row/column, then add "[start:end]", where start and end  are the one-based indexes marking the range of  cells to which the aggregation applies. For example "row-sum[3-6]"</li>
+<li>You can use the AggregateFunctionName as follows:  sum,diff,rat,avg,max,min. Or use another function name if not given in this list</li>
+
+</ul>
+</p>
+<p class="question"> Why do I see the same quantity multiple times?<p>
+<p class="answer"> Please note that a quantity in the text might be paired with multiple tables from the same page, in such cases if you choose "Not Related" the next paired table will be displayed.</p>
+<p class="question"> When should I use the skip button?<p>
+<p class="answer"> In very rare cases at which the text and/or table does not make sense. For example if the page has non-english content. Skipping a mention/document will skip it for all the annotators</p>
+<p class="question"> What about quantity mentions with wrong boundaries? for example " 6 <span class="mention">500</span> worker" or  "increased from <span class="mention"> 456 to 618</span>" <p>
+<p class="answer"> In this case annotate the correct mention in the first case "6500" and in the second case "456", then write in the comment "WB" which means wrong boundary</p>
+<p class="question">What if the quantity mention in the text is giving a range of values, for example "in the range of  <span class="mention"> 56 to 90</span>? <p>
+<p class="answer"> Then, select the related cells at which this range applies and select "other" relation with value "range" </p>
+<p class="question"> What if the quantity mention is part of a row/column header, such as "<span class="mention"> 1-14 </span>  years"? what if it has a wrong boundaries, such as " <span class="mention">16 </span> to 24  hours"? </p>
+<p class="answer"> Annotate it as "other" with value "header", and if it has a wrong boundary add "WB" to the comment.You can alos mark it as "Not a Mention"! </p>
+</div>
+<hr>
+<div class ="footer"> For any enquiry please contact <a href="mailto:yibrahim@mpi-inf.mpg.de?Subject=Table%20Annotation%20Enquiry" target="_top"> Yusra Ibrahim </a>. 
+<br/>
+If you are ready to annotate documents please <a href="{% url 'login' %}">{% trans 'Login' %}!</a>. </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+tr { cursor: default; }
+td.highlight { background: yellow; }
+td:hover { 
+  background: gray; 
+}
+li{font-family: "Times New Roman", Times, serif;font-size: 20px;}
+.mention {background: yellow;}
+.example-table{border: 1px solid red; border-radius: 5px; padding: 5px;margin-top:5px;}
+.desc{ font-family: "Times New Roman", Times, serif;font-size: 20px;}
+.imp{text-decoration: underline;font-style: italic;margin:5px}
+.relation{text-decoration: underline; font-weight: bold;}
+.screenshot{border: 1px solid blue; border-radius: 5px; padding: 5px;}
+.example-text{border: 1px solid red; border-radius: 5px; padding: 5px;}
+.table-part{float:right; margin-top:50px;}
+.selection-part{flaot:left; margin-left:0 auto;margin-top:50px;}
+.related{margin-left: 50px;}
+.question{font-weight:bold;}
+.answer{margin-bottom:20px;}

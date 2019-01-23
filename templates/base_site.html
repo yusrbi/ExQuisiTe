@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Tables Annotation') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'userstudy:home' %}">Tables Annotation</a></h1>
+{% endblock %}
+
+{% block nav-global %}
+{% endblock %}
+{%block footer %} <div id="footer"> <a href="{% url 'userstudy:imprint' %}"> Imprint </a>|<a href="{% url 'userstudy:data_protection' %}"> Data Protection </a> </div> {% endblock %}
